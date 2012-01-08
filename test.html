@@ -1,0 +1,21 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head>
+	<style type="text/css">  
+      canvas { border: 1px solid black; }  
+    </style>
+</head>
+<body onload="setupClock();">
+  <canvas id="clock" width="200" height="200">
+  </canvas>
+      <form id="clockForm" action="javascript: extractValuesAndUpdateClock()" >
+          <input id="hours" name="hours" type="text" />h :
+          <input id="minutes" name="minutes" type="text" />m
+          <br />
+          <input type="submit" value="Check"/>
+     </form>
+  <script src="http://code.jquery.com/jquery-1.7.1.min.js"></script>
+  <script src="clock.js"></script>
+  <script type="text/javascript">
+  </script>
+</body>
+</html>
