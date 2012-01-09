@@ -14,19 +14,24 @@ Element.prototype.leftTopScreen = function () {
                 return new Array (x, y);
             }
 
-extractValuesAndUpdateClock = function() {
-        clock.hours = $('#hours').val();
-        clock.minutes = $('#minutes').val();
-        redrawClock();
+extractValuesAndCheckClock = function() {
+    var result = "FOUT!";
+    var hours = $('#hours').val();
+    var minutes = $('#minutes').val();
+    if (clock.hours != hours || Math.abs(clock.minutes - minutes)>3) {
+        result += " de lok staat op: " + clock.hours + ":" + clock.minutes;
+    } else {
+        result = "GOED ZO!";
     }
+    alert(result);
+}
 
 var clock = {hours: 0, minutes: 0};
 var drag = false;
-var control = "minutes"
+var control = "minutes";
 var clockOffsetPosition  = document.getElementById("clock").leftTopScreen();
 
 setupClock = function (){
-    alert(clockOffsetPosition)
     redrawClock();
 }
 
