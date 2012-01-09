@@ -18,7 +18,7 @@ extractValuesAndCheckClock = function() {
     var result = "FOUT!";
     var hours = $('#hours').val();
     var minutes = $('#minutes').val();
-    if (clock.hours != hours || Math.abs(clock.minutes - minutes)>3) {
+    if (clock.hours != hours || Math.abs(clock.minutes - minutes)>2) {
         result += " de lok staat op: " + clock.hours + ":" + clock.minutes;
     } else {
         result = "GOED ZO!";
@@ -80,8 +80,7 @@ $("#clock").mousedown(function(e){
     var angle = - Math.atan2((e.clientX-100-clockOffsetPosition[0]), (e.clientY-100-clockOffsetPosition[1]))+Math.PI;
     var distanceToHours = Math.abs(angle - clock.hours * Math.PI/6 - clock.minutes * Math.PI/360);
     var distanceToMinutes = Math.abs(angle - clock.minutes * Math.PI/30);
-    //alert(distanceToHours +" | "+ distanceToMinutes);
-    if (distanceToHours < 0.05 || distanceToMinutes < 0.05) {
+    if (distanceToHours < 0.15 || distanceToMinutes < 0.15) {
         drag = true;
         if (distanceToHours <= distanceToMinutes){
             control = "hours";
@@ -100,9 +99,10 @@ $("#clock").mousemove(function(e){
        var canvas = document.getElementById('clock');
     var ctx = canvas.getContext('2d');
     ctx.cursor
-        var angle =  - Math.atan2((e.clientX-100-clockOffsetPosition[0]), (e.clientY-100-clockOffsetPosition[1]))+Math.PI ;
+        var angle =  - Math.atan2((e.clientX-100-clockOffsetPosition[0]), 
+				(e.clientY-100-clockOffsetPosition[1]))+Math.PI ;
         if (control == "minutes") {
-            clock.minutes = (angle * 30) / Math.PI;
+            clock.minutes = Math.round((angle * 30) / Math.PI);
         } else {
             clock.hours = Math.round((angle * 6) / Math.PI);
         }
